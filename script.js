@@ -119,19 +119,27 @@ class Enemy4 {
         this.image.src = 'enemy4.png'
         this.speed = Math.random() * 4 +1
         this.spriteWidth = 213
-        this.spriteHeight = 212
+        this.spriteHeight = 213
         this.width = this.spriteWidth / 4
         this.height = this.spriteHeight / 4
         this.x = Math.random() * (canvas4.width - this.width)
         this.y = Math.random()*(canvas4.height - this.height)
-        this.newX = Math.random() * (canvas4.width - this.width)
-        this.newY = Math.random()*(canvas4.height - this.height)
+        this.newX = Math.random() * canvas4.width 
+        this.newY = Math.random()*canvas4.height 
         this.frame = 0
         this.flapSpeed = Math.floor(Math.random() * 3 + 1)
+        this.interval = Math.floor(Math.random() * 200 + 50)
     }
     update4(){
-        // this.x = 0
-        // this.y = 0
+        if(gameFrame % this.interval === 0){
+            this.newX = Math.random() * (canvas4.width - this.width)
+            this.newY = Math.random()*(canvas4.height - this.height)
+        }
+        let dx = this.x - this.newX
+        let dy = this.y - this.newY
+        this.x -= dx/30
+        this.y -= dy/30
+
         if(this.x + this.width < 0 ) this.x = canvas4.width
         if(gameFrame%this.flapSpeed==0){
             this.frame>4 ? this.frame=0 : this.frame++
