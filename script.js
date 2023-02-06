@@ -2,6 +2,7 @@
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 const totalEnemies = 100
+let gameFrame = 0
 const enemyArray = []
 
 canvas.height=760
@@ -16,18 +17,27 @@ canvas.width = 500
 
 class Enemy {
     constructor(){
+        this.image = new Image()
+        this.image.src = 'enemy1.png'
         this.x = Math.random() * canvas.width,
         this.y = Math.random()*canvas.height,
-        this.width = 100,
-        this.height = 100,
         this.speed = Math.random() * 4 - 2
+        this.spriteWidth = 293
+        this.spriteHeight = 155
+        this.width = this.spriteWidth /2
+        this.height = this.spriteHeight /2
+        this.frame = 0
+        this.flapSpeed = Math.floor(Math.random() * 3 + 1)
     }
     update(){
         this.x+= this.speed
         this.y+= this.speed
+        if(gameFrame%this.flapSpeed==0){
+            this.frame>4 ? this.frame=0 : this.frame++
+        }
     }
     draw(){
-        ctx.strokeRect(this.x,this.y,this.width,this.height)
+        ctx.drawImage(this.image,this.frame * this.spriteWidth,0,this.spriteWidth,this.spriteHeight,this.x,this.y,this.width,this.height)
 
     }
 }
@@ -42,6 +52,7 @@ function animate(){
         enemy.draw()
         enemy.update()
     })
+    gameFrame++
     requestAnimationFrame(animate)
 }
 
