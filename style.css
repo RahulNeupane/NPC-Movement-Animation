@@ -1,9 +1,24 @@
-canvas{
+#canvas1{
     border: 2px solid black;
     height: 760px;
-    width: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    width: 24%;
+
+}
+#canvas2{
+    border: 2px solid black;
+    height: 760px;
+    width: 24%;
+
+}
+#canvas3{
+    border: 2px solid black;
+    height: 760px;
+    width: 24%;
+
+}
+#canvas4{
+    border: 2px solid black;
+    height: 760px;
+    width: 24%;
+
 }
